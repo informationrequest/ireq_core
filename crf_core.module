@@ -63,5 +63,14 @@ function theme_request_icon($variables) {
   return $output;
 }
 
+/**
+ * Implements hook_views_api().
+ */
+function crf_core_views_api() {
+  return array(
+    'api' => '3.0-alpha1',
+    'path' => drupal_get_path('module', 'crf_core') . '/views',
+  );
+}
 
 

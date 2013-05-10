@@ -5,3 +5,6 @@ package = CRF
 dependencies[] = humanitarianresponse_core
 features[features_api][] = api:1
 
+files[] = views/crf_core.views.inc
+files[] = views/crf_core_handler_field_crf_add.inc
+
