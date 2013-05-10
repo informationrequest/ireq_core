@@ -1,0 +1,7 @@
+name = CRF core
+description = Common Request Format core module
+core = 7.x
+package = CRF
+dependencies[] = humanitarianresponse_core
+features[features_api][] = api:1
+

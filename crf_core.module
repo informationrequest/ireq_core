@@ -1,0 +1,67 @@
+<?php
+/**
+ * @file
+ * Drupal needs this blank file.
+ */
+
+
+/**
+ * Preprocess node
+ *
+function crf_core_preprocess_node(&$variables) {
+  $node = $variables['node'];
+//dpm($variables, 'crf_core_preprocess_node > variables');
+//dsm("crf_core_preprocess_node");
+  $callback = 'crf_core_preprocess_node_' . $node->type;
+  switch ($node->type) {
+    case 'request':
+    case 'assessments_batch':
+    case 'contacts_upload':
+    case 'fts_message':
+    case 'indicator_data_batch':
+      module_load_include('inc', 'crf_core', 'crf_core.preprocess');
+      return $callback($node, $variables);
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function crf_core_theme() {
+  return array(
+    'request_icon' => array(
+      'variables' => array('node' => NULL),
+      'function' => 'theme_request_icon',
+    ),
+  );
+}
+
+/**
+ * Theme icon for request
+ */
+function theme_request_icon($variables) {
+  $node = $variables['node'];
+
+  $icon_vars = array(
+    'path' => path_to_theme() . '/images/crf_request/internal-request.png',
+    'alt' => 'Internal Request',
+    'title' => 'Internal Request',
+    'width' => '128',
+    'height' => '41',
+    'attributes' => array('class' => 'request-icon'),
+  );
+
+  // Check request type ("internal", "external", so far)
+  // TODO refactoring after swithcing to taxonomy
+  if ($node->field_request_type['und'][0]['value']) {
+  }
+  else {
+    $icon_vars['path'] = path_to_theme() . '/images/crf_request/external-request.png';
+  }
+
+  $output = theme('image', $icon_vars);
+  return $output;
+}
+
+
+
