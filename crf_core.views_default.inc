@@ -213,21 +213,11 @@ function crf_core_views_default_views() {
   $handler->display->display_options['fields']['nothing_1']['alter']['text'] = 'Delete';
   $handler->display->display_options['fields']['nothing_1']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['nothing_1']['alter']['path'] = '[field_path]/[item_id]/delete?destination=[host_entity_path]';
-  /* Field: Global: Custom text */
-  $handler->display->display_options['fields']['nothing_2']['id'] = 'nothing_2';
-  $handler->display->display_options['fields']['nothing_2']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing_2']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing_2']['label'] = '';
-  $handler->display->display_options['fields']['nothing_2']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['nothing_2']['alter']['text'] = 'Add';
-  $handler->display->display_options['fields']['nothing_2']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['nothing_2']['alter']['path'] = '[field_path]/add/[host_entity_type]/[host_entity_id]?destination=[host_entity_path]';
-  $handler->display->display_options['fields']['nothing_2']['element_label_colon'] = FALSE;
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['crf_add']['id'] = 'crf_add';
-  $handler->display->display_options['fields']['crf_add']['table'] = 'field_collection_item';
-  $handler->display->display_options['fields']['crf_add']['field'] = 'crf_add';
-  $handler->display->display_options['fields']['crf_add']['label'] = 'Status';
+  /* Field: Field collection item: CRF link */
+  $handler->display->display_options['fields']['crf_link']['id'] = 'crf_link';
+  $handler->display->display_options['fields']['crf_link']['table'] = 'field_collection_item';
+  $handler->display->display_options['fields']['crf_link']['field'] = 'crf_link';
+  $handler->display->display_options['fields']['crf_link']['label'] = 'Status';
   /* Sort criterion: Field collection item: Field collection item ID */
   $handler->display->display_options['sorts']['item_id']['id'] = 'item_id';
   $handler->display->display_options['sorts']['item_id']['table'] = 'field_collection_item';
@@ -268,7 +258,6 @@ function crf_core_views_default_views() {
     t('Host Entity ID'),
     t('Edit'),
     t('Delete'),
-    t('Add'),
     t('Status'),
     t('All'),
   );
