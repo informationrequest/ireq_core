@@ -1,11 +1,11 @@
 <?php
 /**
  * @file
- * Contains the CRF add link based on host_entity_path field handler.
+ * Contains the CRF report link based on host_entity_path field handler.
  */
- 
+
 /**
- * Field handler to display the host_entity_path
+ * Field handler to display the Report link
  */
 class crf_core_handler_field_crf_add extends views_handler_field {
   function query() {
@@ -22,28 +22,50 @@ class crf_core_handler_field_crf_add extends views_handler_field {
   }
 
   /**
-   * Work out the host_entity_path
+   * Render report link.
    */
   function render($values) {
-    $host_entity_path = "";
-    $item_id =  $values->item_id;
-    //debug($values);
-    $field_collection_item = field_collection_item_load($item_id);
-    $host_entity_id = $field_collection_item->hostEntityId();
-    if (!empty($host_entity_id)) {
-      $host_entity_type = $field_collection_item->hostEntityType();
-      if (!empty($host_entity_type)) {
-        $host_entitys = entity_load($host_entity_type, array($host_entity_id));
-        if (isset($host_entitys[$host_entity_id])) {
-          $host_entity = $host_entitys[$host_entity_id];
-          //debug($host_entity);
-          //$host_entity = profile2_load($host_entity_id);
-          $host_entity_uri = entity_uri($host_entity_type, $host_entity);
-          $host_entity_path = isset($host_entity_uri['path'])?$host_entity_uri['path']:"";
-        }
-      }
+    // Get Entity (field_collection) Request id
+    $request_id =  $values->item_id;
+//dpm($values, 'values');
+//    $field_collection_item = field_collection_item_load($request_id);
+//dpm($field_collection_item, 'field_collection_item');
+
+    // Get recipient uid
+    $recipient_uid = $values->field_data_field_request_recipients_field_request_recipients;
+
+    // Get request content type
+    $report_term_entity = $values->field_field_reporting_type[0]['raw']['entity'];
+    $report_term_wrapper = entity_metadata_wrapper('taxonomy_term', $report_term_entity);
+    $content_type = $report_term_wrapper->field_content_type->value() ? $report_term_wrapper->field_content_type->value() : 'report';
+//dpm($report_term_entity , '$report_term_entity ');
+//dsm($report_term_wrapper->field_content_type->value(), '$report_term_wrapper->field_content_type->value()');
+//dsm("Content type: $content_type - Request entity: $request_id - User: $recipient_uid");
+
+    // get request node (if any)
+    $request_nid = crf_core_get_request($request_id, $recipient_uid);
+//dpm($request_nid);
+
+    if ($request_nid) {
+      $report_link_text = t('Edit @rt', array('@rt' => $content_type));
+      $report_link = l($report_link_text, 'node/edit/' . $request_nid);
     }
-    $host_entity_path = 'CRF link';
-    return $host_entity_path;
+    else {
+      $report_link_text = t('Add @rt', array('@rt' => $content_type));
+      $report_link = l($report_link_text, 'node/add/' . str_replace('_', '-', $content_type),
+        array('html' => TRUE,
+          'query' => array(
+            array('edit' =>
+              array(
+                'field_collection_request_ref' => array(LANGUAGE_NONE => $request_id),
+                'field_recipient' => array(LANGUAGE_NONE => $recipient_uid),
+              ),
+            ),
+          )
+        )
+      );
+    }
+    return $report_link;
+
   }
 }

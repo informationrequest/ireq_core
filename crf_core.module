@@ -4,6 +4,28 @@
  * Drupal needs this blank file.
  */
 
+/**
+ * Get report from uid, request
+ *
+ * @param $content_type
+ * @param $entity_id
+ * @param $recipient_uid
+ *
+ * @return $node
+ */
+function crf_core_get_request($entity_id, $recipient_uid) {
+  // build query
+  $query = new EntityFieldQuery();
+  $result = $query
+    ->entityCondition('entity_type', 'node')
+    ->fieldCondition('field_collection_request_ref', 'target_id', $entity_id)
+    ->fieldCondition('field_recipient', 'target_id', $recipient_uid)
+    ->execute();
+  // get nid (if any)
+  $nid =  empty($result) ? NULL : reset(array_keys($result['node']));
+//dpm($result, "crf_core_get_request > result ($nid)");
+    return $nid;
+}
 
 /**
  * Preprocess node
