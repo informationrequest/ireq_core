@@ -12,11 +12,11 @@
 function crf_core_views_data() {
 
   // hostEntityId
-  $data['field_collection_item']['crf_add'] = array(
-    'title' => t('CRF add link'),
-    'help' => t('The CRF add link from the ID of the Host Entity. Zonkers says 1'),
+  $data['field_collection_item']['crf_link'] = array(
+    'title' => t('CRF link'),
+    'help' => t('The CRF link from the ID of the Host Entity. Zonkers says 2'),
     'field' => array(
-      'handler' => 'crf_core_handler_field_crf_add',
+      'handler' => 'crf_core_handler_field_crf_link',
     ),
   );
 /*

@@ -7,7 +7,7 @@
 /**
  * Field handler to display the Report link
  */
-class crf_core_handler_field_crf_add extends views_handler_field {
+class crf_core_handler_field_crf_link extends views_handler_field {
   function query() {
     // Do nothing, as this handler does not need to do anything to the query itself.
   }
