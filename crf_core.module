@@ -1,8 +1,10 @@
 <?php
 /**
  * @file
- * Drupal needs this blank file.
+ * Code for the CRF core feature.
  */
+
+include_once 'crf_core.features.inc';
 
 /**
  * Get report from uid, request
