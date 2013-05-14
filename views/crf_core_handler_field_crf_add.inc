@@ -44,11 +44,11 @@ class crf_core_handler_field_crf_add extends views_handler_field {
 
     // get request node (if any)
     $request_nid = crf_core_get_request($request_id, $recipient_uid);
-//dpm($request_nid);
+//dpm($request_nid, 'request_nid');
 
     if ($request_nid) {
       $report_link_text = t('Edit @rt', array('@rt' => $content_type));
-      $report_link = l($report_link_text, 'node/edit/' . $request_nid);
+      $report_link = l($report_link_text, "node/$request_nid/edit");
     }
     else {
       $report_link_text = t('Add @rt', array('@rt' => $content_type));
