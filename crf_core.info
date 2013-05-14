@@ -10,6 +10,6 @@ dependencies[] = humanitarianresponse_core
 dependencies[] = views
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:1
-features[views_view][] = request_field_collection_view
+features[views_view][] = field_collection_requests_view
 files[] = views/crf_core.views.inc
 files[] = views/crf_core_handler_field_crf_add.inc
