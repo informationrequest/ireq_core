@@ -35,16 +35,22 @@ class crf_core_handler_field_crf_link extends views_handler_field {
     $recipient_uid = $values->field_data_field_request_recipients_field_request_recipients;
 
     // Get request content type
-    $report_term_entity = $values->field_field_reporting_type[0]['raw']['entity'];
-    $report_term_wrapper = entity_metadata_wrapper('taxonomy_term', $report_term_entity);
-    $content_type = $report_term_wrapper->field_content_type->value() ? $report_term_wrapper->field_content_type->value() : 'report';
+    // @TODO remove check after validation of field_collection
+    if (count($values->field_field_reporting_type)) {
+      $report_term_entity = $values->field_field_reporting_type[0]['raw']['entity'];
+      $report_term_wrapper = entity_metadata_wrapper('taxonomy_term', $report_term_entity);
+      $content_type = $report_term_wrapper->field_content_type->value() ? $report_term_wrapper->field_content_type->value() : 'report';
+    }
+    else {
+      $content_type = 'Report';
+    }
+
 //dpm($report_term_entity , '$report_term_entity ');
 //dsm($report_term_wrapper->field_content_type->value(), '$report_term_wrapper->field_content_type->value()');
 //dsm("Content type: $content_type - Request entity: $request_id - User: $recipient_uid");
 
     // get request node (if any)
     $request_nid = crf_core_get_request($request_id, $recipient_uid);
-//dpm($request_nid, 'request_nid');
 
     if ($request_nid) {
       $report_link_text = t('Edit @rt', array('@rt' => $content_type));
