@@ -12,8 +12,8 @@ function crf_core_views_default_views() {
 
   $view = new view();
   $view->name = 'field_collection_requests_view';
-  $view->description = '';
-  $view->tag = 'default';
+  $view->description = 'Render field_collection request with reports from entity uid';
+  $view->tag = 'CRF';
   $view->base_table = 'field_collection_item';
   $view->human_name = 'Field collection Requests view';
   $view->core = 7;
