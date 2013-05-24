@@ -80,6 +80,7 @@ function crf_core_context_default_contexts() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('CRF');
   t('CRF sidewide context');
   $export['crf'] = $context;
 
