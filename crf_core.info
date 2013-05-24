@@ -20,5 +20,6 @@ features[variable][] = date_format_request
 features[variable][] = locale_custom_strings_en
 features[variable][] = site_frontpage
 features[views_view][] = field_collection_requests_view
+features[views_view][] = requests 
 files[] = views/crf_core.views.inc
 files[] = views/crf_core_handler_field_crf_link.inc
