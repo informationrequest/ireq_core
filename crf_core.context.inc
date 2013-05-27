@@ -43,12 +43,13 @@ function crf_core_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'crf_requests-create_request' => array(
-          'module' => 'crf_requests',
+        'crf_request-create_request' => array(
+          'module' => 'crf_request',
           'delta' => 'create_request',
           'region' => 'sidebar_first',
           'weight' => '-10',
         ),
+/*
         'crf_requests-administrator' => array(
           'module' => 'crf_requests',
           'delta' => 'administrator',
@@ -73,6 +74,7 @@ function crf_core_context_default_contexts() {
           'region' => 'sidebar_first',
           'weight' => '-5',
         ),
+*/
       ),
     ),
   );
