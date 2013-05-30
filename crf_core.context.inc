@@ -49,32 +49,6 @@ function crf_core_context_default_contexts() {
           'region' => 'sidebar_first',
           'weight' => '-10',
         ),
-/*
-        'crf_requests-administrator' => array(
-          'module' => 'crf_requests',
-          'delta' => 'administrator',
-          'region' => 'sidebar_first',
-          'weight' => '-9',
-        ),
-        'crf_requests-view_data' => array(
-          'module' => 'crf_requests',
-          'delta' => 'view_data',
-          'region' => 'sidebar_first',
-          'weight' => '-8',
-        ),
-        'crf_requests-tools' => array(
-          'module' => 'crf_requests',
-          'delta' => 'tools',
-          'region' => 'sidebar_first',
-          'weight' => '-7',
-        ),
-        'crf_requests-legend' => array(
-          'module' => 'crf_requests',
-          'delta' => 'legend',
-          'region' => 'sidebar_first',
-          'weight' => '-5',
-        ),
-*/
       ),
     ),
   );
