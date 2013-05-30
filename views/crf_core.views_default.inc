@@ -376,6 +376,13 @@ function crf_core_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'node';
   $handler->display->display_options['row_options']['view_mode'] = 'full';
   $handler->display->display_options['row_options']['links'] = FALSE;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'No requests have been recorded yet';
+  $handler->display->display_options['empty']['area']['format'] = 'simple';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -397,86 +404,6 @@ function crf_core_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Filter criterion: Content: Nid */
-  $handler->display->display_options['filters']['nid']['id'] = 'nid';
-  $handler->display->display_options['filters']['nid']['table'] = 'node';
-  $handler->display->display_options['filters']['nid']['field'] = 'nid';
-  $handler->display->display_options['filters']['nid']['group'] = 1;
-  $handler->display->display_options['filters']['nid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['nid']['expose']['operator_id'] = 'nid_op';
-  $handler->display->display_options['filters']['nid']['expose']['label'] = 'Request';
-  $handler->display->display_options['filters']['nid']['expose']['operator'] = 'nid_op';
-  $handler->display->display_options['filters']['nid']['expose']['identifier'] = 'nid';
-  $handler->display->display_options['filters']['nid']['expose']['remember'] = TRUE;
-  $handler->display->display_options['filters']['nid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    218860149 => 0,
-    200153887 => 0,
-    52310416 => 0,
-    30037204 => 0,
-  );
-  /* Filter criterion: Content: Reporting types (field_reporting_type) */
-  $handler->display->display_options['filters']['field_reporting_type_target_id']['id'] = 'field_reporting_type_target_id';
-  $handler->display->display_options['filters']['field_reporting_type_target_id']['table'] = 'field_data_field_reporting_type';
-  $handler->display->display_options['filters']['field_reporting_type_target_id']['field'] = 'field_reporting_type_target_id';
-  $handler->display->display_options['filters']['field_reporting_type_target_id']['group'] = 1;
-  $handler->display->display_options['filters']['field_reporting_type_target_id']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_reporting_type_target_id']['expose']['operator_id'] = 'field_reporting_type_target_id_op';
-  $handler->display->display_options['filters']['field_reporting_type_target_id']['expose']['label'] = 'Request Type';
-  $handler->display->display_options['filters']['field_reporting_type_target_id']['expose']['operator'] = 'field_reporting_type_target_id_op';
-  $handler->display->display_options['filters']['field_reporting_type_target_id']['expose']['identifier'] = 'field_reporting_type_target_id';
-  $handler->display->display_options['filters']['field_reporting_type_target_id']['expose']['remember'] = TRUE;
-  $handler->display->display_options['filters']['field_reporting_type_target_id']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    218860149 => 0,
-    200153887 => 0,
-    52310416 => 0,
-    30037204 => 0,
-  );
-  /* Filter criterion: Date: Date (node) */
-  $handler->display->display_options['filters']['date_filter']['id'] = 'date_filter';
-  $handler->display->display_options['filters']['date_filter']['table'] = 'node';
-  $handler->display->display_options['filters']['date_filter']['field'] = 'date_filter';
-  $handler->display->display_options['filters']['date_filter']['operator'] = 'between';
-  $handler->display->display_options['filters']['date_filter']['group'] = 1;
-  $handler->display->display_options['filters']['date_filter']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['date_filter']['expose']['operator_id'] = 'date_filter_op';
-  $handler->display->display_options['filters']['date_filter']['expose']['label'] = 'Date range';
-  $handler->display->display_options['filters']['date_filter']['expose']['operator'] = 'date_filter_op';
-  $handler->display->display_options['filters']['date_filter']['expose']['identifier'] = 'date_filter';
-  $handler->display->display_options['filters']['date_filter']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    6 => 0,
-    5 => 0,
-    4 => 0,
-    3 => 0,
-  );
-  $handler->display->display_options['filters']['date_filter']['date_fields'] = array(
-    'field_data_field_crf_req_date.field_crf_req_date_value' => 'field_data_field_crf_req_date.field_crf_req_date_value',
-  );
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 'All';
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['status']['expose']['operator_id'] = '';
-  $handler->display->display_options['filters']['status']['expose']['label'] = 'Published';
-  $handler->display->display_options['filters']['status']['expose']['operator'] = 'status_op';
-  $handler->display->display_options['filters']['status']['expose']['identifier'] = 'status';
-  $handler->display->display_options['filters']['status']['expose']['remember'] = TRUE;
-  $handler->display->display_options['filters']['status']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    218860149 => 0,
-    200153887 => 0,
-    52310416 => 0,
-    30037204 => 0,
-  );
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -506,10 +433,7 @@ function crf_core_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('Request'),
-    t('Request Type'),
-    t('Date range'),
-    t('Published'),
+    t('No requests have been recorded yet'),
     t('Page'),
   );
   $export['requests'] = $view;
