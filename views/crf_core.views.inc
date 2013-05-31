@@ -5,10 +5,23 @@
  * Provide extras views data for field_collection.module.
  */
 
+
+function crf_core_views_data_alter(&$data) {
+
+  $data['field_data_field_internal_report']['crf_internal'] = array(
+    'group' => t('CRF'),
+    'title' => t('CRF internal request'),
+    'help' => t('Filter for CRF internal request'),
+    'real field' => 'field_internal_report',
+    'filter' => array(
+      'handler' => 'crf_core_handler_filter_internal_request',
+    ),
+  );
+}
+
 /**
  * Implements hook_views_data()
  */
-
 function crf_core_views_data() {
 
   // hostEntityId
