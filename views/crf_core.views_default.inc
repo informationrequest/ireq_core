@@ -412,6 +412,10 @@ function crf_core_views_default_views() {
     'request' => 'request',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: CRF: CRF internal request */
+  $handler->display->display_options['filters']['crf_internal']['id'] = 'crf_internal';
+  $handler->display->display_options['filters']['crf_internal']['table'] = 'field_data_field_internal_report';
+  $handler->display->display_options['filters']['crf_internal']['field'] = 'crf_internal';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
