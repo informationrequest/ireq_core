@@ -7,6 +7,30 @@
 include_once 'crf_core.features.inc';
 
 /**
+ * Get entity (node) bundles using field_collection_request_ref
+ * i.e. node types used as "report type"
+ */
+function crf_core_report_types($reset = FALSE) {
+  $report_types = &drupal_static(__FUNCTION__);
+  if (!isset($report_types) || $reset) {
+    if (($cache = cache_get('CFR_report_types')) && !$reset) {
+      $report_types = $cache->data;
+    }
+    else {
+      $field_crf = field_info_field('field_collection_request_ref');
+      if (isset($field_crf['bundles']['node']) && count($field_crf['bundles']['node'])) {
+        foreach ($field_crf['bundles']['node'] as $node_type) {
+          $node_type_info = node_type_get_type($node_type);
+          $report_types[$node_type_info->type] = $node_type_info->name;
+        }
+      }
+      cache_set('CFR_report_types', $report_types, 'cache');
+    }
+  }
+  return $report_types;
+}
+
+/**
  * Get report from uid, request
  *
  * @param $content_type
