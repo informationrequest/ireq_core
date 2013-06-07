@@ -6,6 +6,8 @@ Common Request Format core module
 function crf_core_get_request
 Get report (if any) from uid and request id (it searches in field_collection_request).
 
+
+@TODO remove from here
 === Block hooks
 
 crf_core_block_info
