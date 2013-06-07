@@ -8,11 +8,11 @@
 
 function crf_core_views_data_alter(&$data) {
 
-  $data['field_data_field_internal_report']['crf_internal'] = array(
+  $data['field_data_field_request_audience']['crf_internal'] = array(
     'group' => t('CRF'),
     'title' => t('CRF internal request'),
     'help' => t('Filter for CRF internal request'),
-    'real field' => 'field_internal_report',
+    'real field' => 'field_request_audience',
     'filter' => array(
       'handler' => 'crf_core_handler_filter_internal_request',
     ),
