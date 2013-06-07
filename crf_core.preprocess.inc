@@ -34,9 +34,9 @@ function crf_core_preprocess_node_request($node, &$variables) {
           $job_title_term = taxonomy_term_load($account->field_job_title['und'][0]['tid']);
           $recipient_info[] = $job_title_term->name;
         }
-        if (isset($account->field_organisation['und'][0]['tid'])) {
-          $organisation_term = taxonomy_term_load($account->field_organisation['und'][0]['tid']);
-          $recipient_info[] = $organisation_term->name;
+        if (isset($account->field_organization['und'][0]['tid'])) {
+          $organization_term = taxonomy_term_load($account->field_organization['und'][0]['tid']);
+          $recipient_info[] = $organization_term->name;
         }
         if (isset($account->field_locations['und'][0]['tid'])) {
           $location_term = taxonomy_term_load($account->field_locations['und'][0]['tid']);
