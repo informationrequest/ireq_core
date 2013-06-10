@@ -23,7 +23,10 @@ function crf_core_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['access']['type'] = 'role';
+  $handler->display->display_options['access']['role'] = array(
+    139443077 => '139443077',
+  );
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
@@ -279,9 +282,7 @@ function crf_core_views_default_views() {
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
-    30037204 => '30037204',
-    200153887 => '200153887',
-    52310416 => '52310416',
+    139443077 => '139443077',
   );
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -414,7 +415,7 @@ function crf_core_views_default_views() {
   $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: CRF: CRF internal request */
   $handler->display->display_options['filters']['crf_internal']['id'] = 'crf_internal';
-  $handler->display->display_options['filters']['crf_internal']['table'] = 'field_data_field_internal_report';
+  $handler->display->display_options['filters']['crf_internal']['table'] = 'field_data_field_request_audience';
   $handler->display->display_options['filters']['crf_internal']['field'] = 'crf_internal';
 
   /* Display: Page */
