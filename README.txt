@@ -7,6 +7,9 @@ function crf_core_get_request
 Get report (if any) from uid and request id (it searches in field_collection_request).
 
 
+@TODO
+* Implement hook_uninstall() https://drupal.org/node/1055460
+
 @TODO remove from here
 === Block hooks
 
