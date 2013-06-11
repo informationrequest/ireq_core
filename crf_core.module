@@ -6,6 +6,18 @@
 
 include_once 'crf_core.features.inc';
 
+/*
+ * Implements hook_permission().
+ */
+function crf_core_permission() {
+  return array(
+    'access_internal_ocha_requests' => array(
+      'title' => t('Access Internal Requests'),
+      'description' => t('Allow users to access CFR internal (OCHA) requests'),
+     ),
+  );
+}
+
 /**
  * Implements hook_list_option_info().
  */
