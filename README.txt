@@ -10,6 +10,14 @@ Get report (if any) from uid and request id (it searches in field_collection_req
 @TODO
 * Implement hook_uninstall() https://drupal.org/node/1055460
 
+@TODO feed entity import
+* Entityforms - https://drupal.org/node/1540680
+* Rules Forms Support - https://drupal.org/project/rules_forms
+* Rules Data Transforms - https://drupal.org/project/rules_data_transforms
+* Feeds entity reference - https://drupal.org/project/feeds_entityreference
+* Field collection feeds - https://drupal.org/project/field_collection_feeds (https://drupal.org/node/1831004)
+* Field collection add feeds integration - https://drupal.org/node/1063434
+
 @TODO remove from here
 === Block hooks
 
