@@ -35,29 +35,52 @@ function crf_core_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
-    'field_request_recipients' => 'field_request_recipients',
-    'field_reporting_type' => 'field_reporting_type',
-    'field_request_requested_by' => 'field_request_requested_by',
-    'field_path' => 'field_path',
     'host_entity_id' => 'host_entity_id',
-    'host_entity_path' => 'host_entity_path',
-    'host_entity_type' => 'host_entity_type',
-    'nothing' => 'nothing',
-    'nothing_1' => 'nothing',
-    'nothing_2' => 'nothing_2',
-    'crf_add' => 'crf_add',
     'item_id' => 'item_id',
+    'nid' => 'nid',
+    'title' => 'title',
+    'edit_node' => 'title',
+    'field_recipient' => 'field_recipient',
+    'field_request_requested_by' => 'field_request_requested_by',
+    'crf_link' => 'crf_link',
+    'uid' => 'uid',
+    'state' => 'state',
+    'stamp' => 'stamp',
   );
   $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
-    'field_request_recipients' => array(
+    'host_entity_id' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'item_id' => array(
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_reporting_type' => array(
+    'nid' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => ' ',
+      'empty_column' => 0,
+    ),
+    'edit_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_recipient' => array(
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -65,51 +88,30 @@ function crf_core_views_default_views() {
       'empty_column' => 0,
     ),
     'field_request_requested_by' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_path' => array(
+    'crf_link' => array(
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
-    'host_entity_id' => array(
+    'uid' => array(
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
-    'host_entity_path' => array(
+    'state' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
-    'host_entity_type' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'nothing' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'nothing_1' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'nothing_2' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'crf_add' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'item_id' => array(
+    'stamp' => array(
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -149,12 +151,20 @@ function crf_core_views_default_views() {
   $handler->display->display_options['fields']['nid']['table'] = 'node';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
   $handler->display->display_options['fields']['nid']['relationship'] = 'reverse_field_collection_request_ref_node';
+  $handler->display->display_options['fields']['nid']['label'] = 'Report';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['alter']['text'] = '[title] ([edit_node])';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['relationship'] = 'reverse_field_collection_request_ref_node';
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['relationship'] = 'reverse_field_collection_request_ref_node';
+  $handler->display->display_options['fields']['edit_node']['text'] = '(add/edit)';
   /* Field: Content: Requested to */
   $handler->display->display_options['fields']['field_recipient']['id'] = 'field_recipient';
   $handler->display->display_options['fields']['field_recipient']['table'] = 'field_data_field_recipient';
@@ -230,8 +240,10 @@ function crf_core_views_default_views() {
     t('Report'),
     t('[field_reporting_type] [item_id]-[uid]'),
     t('.'),
-    t('Nid'),
+    t('[title] ([edit_node])'),
     t('Title'),
+    t('Edit link'),
+    t('(add/edit)'),
     t('Requested to'),
     t('Requested by'),
     t('Status'),
