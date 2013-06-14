@@ -129,6 +129,16 @@ function crf_core_views_default_views() {
   $handler->display->display_options['relationships']['nid']['field'] = 'nid';
   $handler->display->display_options['relationships']['nid']['relationship'] = 'reverse_field_collection_request_ref_node';
   $handler->display->display_options['relationships']['nid']['label'] = 'Workbench Node';
+  /* Relationship: Content: Author */
+  $handler->display->display_options['relationships']['uid']['id'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['table'] = 'node';
+  $handler->display->display_options['relationships']['uid']['field'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['relationship'] = 'nid';
+  /* Relationship: Content revision: User */
+  $handler->display->display_options['relationships']['uid_1']['id'] = 'uid_1';
+  $handler->display->display_options['relationships']['uid_1']['table'] = 'node_revision';
+  $handler->display->display_options['relationships']['uid_1']['field'] = 'uid';
+  $handler->display->display_options['relationships']['uid_1']['relationship'] = 'reverse_field_collection_request_ref_node';
   /* Field: Field collection item: Host Entity ID */
   $handler->display->display_options['fields']['host_entity_id']['id'] = 'host_entity_id';
   $handler->display->display_options['fields']['host_entity_id']['table'] = 'field_collection_item';
@@ -165,14 +175,17 @@ function crf_core_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['relationship'] = 'reverse_field_collection_request_ref_node';
   $handler->display->display_options['fields']['edit_node']['text'] = '(add/edit)';
-  /* Field: Content: Requested to */
-  $handler->display->display_options['fields']['field_recipient']['id'] = 'field_recipient';
-  $handler->display->display_options['fields']['field_recipient']['table'] = 'field_data_field_recipient';
-  $handler->display->display_options['fields']['field_recipient']['field'] = 'field_recipient';
-  $handler->display->display_options['fields']['field_recipient']['relationship'] = 'reverse_field_collection_request_ref_node';
-  $handler->display->display_options['fields']['field_recipient']['settings'] = array(
-    'link' => 0,
-  );
+  /* Field: Field collection item: CRF link */
+  $handler->display->display_options['fields']['crf_link']['id'] = 'crf_link';
+  $handler->display->display_options['fields']['crf_link']['table'] = 'field_collection_item';
+  $handler->display->display_options['fields']['crf_link']['field'] = 'crf_link';
+  $handler->display->display_options['fields']['crf_link']['label'] = 'Status';
+  $handler->display->display_options['fields']['crf_link']['exclude'] = TRUE;
+  /* Field: Workbench Moderation: State */
+  $handler->display->display_options['fields']['state']['id'] = 'state';
+  $handler->display->display_options['fields']['state']['table'] = 'workbench_moderation_node_history';
+  $handler->display->display_options['fields']['state']['field'] = 'state';
+  $handler->display->display_options['fields']['state']['relationship'] = 'reverse_field_collection_request_ref_node';
   /* Field: Field collection item: Requested by */
   $handler->display->display_options['fields']['field_request_requested_by']['id'] = 'field_request_requested_by';
   $handler->display->display_options['fields']['field_request_requested_by']['table'] = 'field_data_field_request_requested_by';
@@ -181,24 +194,21 @@ function crf_core_views_default_views() {
     'link' => 0,
   );
   $handler->display->display_options['fields']['field_request_requested_by']['delta_offset'] = '0';
-  /* Field: Field collection item: CRF link */
-  $handler->display->display_options['fields']['crf_link']['id'] = 'crf_link';
-  $handler->display->display_options['fields']['crf_link']['table'] = 'field_collection_item';
-  $handler->display->display_options['fields']['crf_link']['field'] = 'crf_link';
-  $handler->display->display_options['fields']['crf_link']['label'] = 'Status';
-  $handler->display->display_options['fields']['crf_link']['exclude'] = TRUE;
-  /* Field: Content: Author uid */
-  $handler->display->display_options['fields']['uid']['id'] = 'uid';
-  $handler->display->display_options['fields']['uid']['table'] = 'node';
-  $handler->display->display_options['fields']['uid']['field'] = 'uid';
-  $handler->display->display_options['fields']['uid']['relationship'] = 'reverse_field_collection_request_ref_node';
-  $handler->display->display_options['fields']['uid']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
-  /* Field: Workbench Moderation: State */
-  $handler->display->display_options['fields']['state']['id'] = 'state';
-  $handler->display->display_options['fields']['state']['table'] = 'workbench_moderation_node_history';
-  $handler->display->display_options['fields']['state']['field'] = 'state';
-  $handler->display->display_options['fields']['state']['relationship'] = 'reverse_field_collection_request_ref_node';
+  /* Field: Content: Requested to */
+  $handler->display->display_options['fields']['field_recipient']['id'] = 'field_recipient';
+  $handler->display->display_options['fields']['field_recipient']['table'] = 'field_data_field_recipient';
+  $handler->display->display_options['fields']['field_recipient']['field'] = 'field_recipient';
+  $handler->display->display_options['fields']['field_recipient']['relationship'] = 'reverse_field_collection_request_ref_node';
+  $handler->display->display_options['fields']['field_recipient']['settings'] = array(
+    'link' => 0,
+  );
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'uid_1';
+  $handler->display->display_options['fields']['name']['label'] = 'Provided by';
+  $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
   /* Field: Workbench Moderation: Timestamp */
   $handler->display->display_options['fields']['stamp']['id'] = 'stamp';
   $handler->display->display_options['fields']['stamp']['table'] = 'workbench_moderation_node_history';
@@ -242,6 +252,8 @@ function crf_core_views_default_views() {
     t('last »'),
     t('Content referencing Field collection item from field_collection_request_ref'),
     t('Workbench Node'),
+    t('author'),
+    t('revision user'),
     t('Host Entity ID'),
     t('Report'),
     t('[field_reporting_type] [item_id]-[uid]'),
@@ -250,11 +262,11 @@ function crf_core_views_default_views() {
     t('Title'),
     t('Edit link'),
     t('(add/edit)'),
-    t('Requested to'),
-    t('Requested by'),
     t('Status'),
-    t('Author uid'),
     t('State'),
+    t('Requested by'),
+    t('Requested to'),
+    t('Provided by'),
     t('Timestamp'),
     t('All'),
   );
