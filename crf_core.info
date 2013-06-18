@@ -34,3 +34,10 @@ features[workbench_moderation_transitions][] = needs_review:published
 files[] = views/crf_core.views.inc
 files[] = views/crf_core_handler_field_crf_link.inc
 files[] = views/crf_core_handler_filter_internal_request.inc
+
+
+; Information added by drush on 2013-06-16
+version = ""
+project = "crf_core"
+datestamp = "1371398703"
+

@@ -17,18 +17,14 @@ function crf_core_context_default_contexts() {
   $context->description = 'CRF sidewide context';
   $context->tag = 'CRF';
   $context->conditions = array(
+    'context' => array(
+      'values' => array(
+        'crf_type_*' => 'crf_type_*',
+       ),
+    ),
     'node' => array(
       'values' => array(
-        'assessments_batch' => 'assessments_batch',
-        'cluster_objectives' => 'cluster_objectives',
-        'contacts_upload' => 'contacts_upload',
-        'fts_message' => 'fts_message',
-        'hr_sitrep' => 'hr_sitrep',
-        'indicator_data' => 'indicator_data',
-        'indicator_data_batch' => 'indicator_data_batch',
-        'indicator_definition' => 'indicator_definition',
         'request' => 'request',
-        'sectoral_analysis' => 'sectoral_analysis',
       ),
       'options' => array(
         'node_form' => '1',
