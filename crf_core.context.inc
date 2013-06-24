@@ -45,6 +45,12 @@ function crf_core_context_default_contexts() {
           'region' => 'sidebar_first',
           'weight' => '-10',
         ),
+        'views--exp-requests-page_1' => array(
+          'module' => 'views',
+          'delta' => '-exp-requests-page_1',
+          'region' => 'sidebar_first',
+          'weight' => -9,
+        ),
       ),
     ),
   );
