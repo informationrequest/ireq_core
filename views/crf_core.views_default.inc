@@ -664,6 +664,11 @@ function crf_core_views_default_views() {
     139443077 => 0,
     2023496 => 0,
   );
+  /* Filter criterion: CRF: CRF internal request */
+  $handler->display->display_options['filters']['crf_internal']['id'] = 'crf_internal';
+  $handler->display->display_options['filters']['crf_internal']['table'] = 'field_data_field_request_audience';
+  $handler->display->display_options['filters']['crf_internal']['field'] = 'crf_internal';
+  $handler->display->display_options['filters']['crf_internal']['relationship'] = 'field_collection_request_node';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
