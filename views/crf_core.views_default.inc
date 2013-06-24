@@ -338,6 +338,20 @@ function crf_core_views_default_views() {
         'is_secondary' => 0,
         'bef_filter_description' => '',
         'tokens' => array(
+        'available' => array(
+            0 => 'global_types',
+          ),
+        ),
+      ),
+    ),
+    'field_request_audience_value' => array(
+      'bef_format' => 'bef',
+      'more_options' => array(
+        'bef_select_all_none' => FALSE,
+        'bef_collapsible' => 0,
+        'is_secondary' => 0,
+        'bef_filter_description' => '',
+        'tokens' => array(
           'available' => array(
             0 => 'global_types',
           ),
@@ -669,6 +683,26 @@ function crf_core_views_default_views() {
   $handler->display->display_options['filters']['crf_internal']['table'] = 'field_data_field_request_audience';
   $handler->display->display_options['filters']['crf_internal']['field'] = 'crf_internal';
   $handler->display->display_options['filters']['crf_internal']['relationship'] = 'field_collection_request_node';
+  /* Filter criterion: Content: Request Audience (field_request_audience) */
+  $handler->display->display_options['filters']['field_request_audience_value']['id'] = 'field_request_audience_value';
+  $handler->display->display_options['filters']['field_request_audience_value']['table'] = 'field_data_field_request_audience';
+  $handler->display->display_options['filters']['field_request_audience_value']['field'] = 'field_request_audience_value';
+  $handler->display->display_options['filters']['field_request_audience_value']['relationship'] = 'field_collection_request_node';
+  $handler->display->display_options['filters']['field_request_audience_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_request_audience_value']['expose']['operator_id'] = 'field_request_audience_value_op';
+  $handler->display->display_options['filters']['field_request_audience_value']['expose']['label'] = 'Request Audience';
+  $handler->display->display_options['filters']['field_request_audience_value']['expose']['operator'] = 'field_request_audience_value_op';
+  $handler->display->display_options['filters']['field_request_audience_value']['expose']['identifier'] = 'field_request_audience_value';
+  $handler->display->display_options['filters']['field_request_audience_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    218860149 => 0,
+    200153887 => 0,
+    52310416 => 0,
+    30037204 => 0,
+    139443077 => 0,
+    2023496 => 0,
+  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
