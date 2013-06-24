@@ -4,8 +4,11 @@ Common Request Format core module
 
 == Module (crf_core.module)
 function crf_core_get_request
-Get report (if any) from uid and request id (it searches in field_collection_request).
+  Get report (if any) from uid and request id (it searches in field_collection_request).
 
+=== Form alter hooks
+crf_core_form_alter
+  Remove audience filter for users without permission
 
 == Moderation
 Multiple workflows for different content types
@@ -33,7 +36,6 @@ crf_core_block_view
   Block qith add request link
 
 
-=== Form alter hooks
 crf_core_form_request_node_form_alter
 crf_core_field_collection_request_preview_validate
 crf_core_field_collection_request_preview_submit
