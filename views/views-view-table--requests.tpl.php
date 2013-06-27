@@ -38,12 +38,12 @@ $field_request_deadline = $view->render_field('field_request_deadline', $row);
 ?>
 <h2 property="dc:title" datatype="" class="node-title"><?php print $title; ?></h2>
 <div class="field field-name-field-request-audience field-type-list-boolean field-label-inline clearfix">
-  <div class="field-label">Request Audience:&nbsp;</div>
+  <div class="field-label"><?php print t('Audience');?>:&nbsp;</div>
   <div class="field-items"><div class="field-item"><?php print $field_request_audience; ?></div></div>
 </div>
 <?php if ($field_emergencies): ?>
 <div class="field field-name-field-emergencies field-type-taxonomy-term-reference field-label-inline clearfix">
-  <div class="field-label">Emergencies:&nbsp;</div>
+  <div class="field-label"><?php print t('Emergencies');?>:&nbsp;</div>
   <div class="field-items"><div class="field-item"><?php print $field_emergencies; ?></div></div>
 </div>
 <?php endif; ?>
@@ -71,7 +71,7 @@ $field_request_deadline = $view->render_field('field_request_deadline', $row);
   </tbody>
 </table>
 <div class="field field-name-field-request-deadline field-type-datetime field-label-inline clearfix">
-  <div class="field-label">Deadline for information submission:&nbsp;</div><div class="field-items">
+  <div class="field-label"><?php print t('Deadline for information submission');?>:&nbsp;</div><div class="field-items">
   <div class="field-item even"><?php print $field_request_deadline; ?></div></div>
 </div>
 
