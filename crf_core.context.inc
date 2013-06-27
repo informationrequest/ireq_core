@@ -20,7 +20,7 @@ function crf_core_context_default_contexts() {
     'context' => array(
       'values' => array(
         'crf_type_*' => 'crf_type_*',
-       ),
+      ),
     ),
     'node' => array(
       'values' => array(
@@ -49,7 +49,7 @@ function crf_core_context_default_contexts() {
           'module' => 'views',
           'delta' => '-exp-requests-page_1',
           'region' => 'sidebar_first',
-          'weight' => -9,
+          'weight' => '-9',
         ),
       ),
     ),
