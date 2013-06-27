@@ -338,7 +338,7 @@ function crf_core_views_default_views() {
         'is_secondary' => 0,
         'bef_filter_description' => '',
         'tokens' => array(
-        'available' => array(
+          'available' => array(
             0 => 'global_types',
           ),
         ),
@@ -422,7 +422,7 @@ function crf_core_views_default_views() {
       'empty_column' => 0,
     ),
     'title' => array(
-      'sortable' => 0,
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => ' ',
@@ -434,14 +434,14 @@ function crf_core_views_default_views() {
       'empty_column' => 0,
     ),
     'timestamp' => array(
-      'sortable' => 0,
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
     'state' => array(
-      'sortable' => 0,
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
@@ -455,7 +455,7 @@ function crf_core_views_default_views() {
       'empty_column' => 0,
     ),
     'field_recipient' => array(
-      'sortable' => 0,
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
@@ -568,27 +568,6 @@ function crf_core_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['relationship'] = 'reverse_field_collection_request_ref_node';
   $handler->display->display_options['fields']['edit_node']['text'] = '(edit)';
-  /* Field: Content revision: Updated date */
-  $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
-  $handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
-  $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
-  $handler->display->display_options['fields']['timestamp']['relationship'] = 'reverse_field_collection_request_ref_node';
-  $handler->display->display_options['fields']['timestamp']['label'] = 'Time of last action';
-  $handler->display->display_options['fields']['timestamp']['date_format'] = 'long';
-  /* Field: Workbench Moderation: State */
-  $handler->display->display_options['fields']['state']['id'] = 'state';
-  $handler->display->display_options['fields']['state']['table'] = 'workbench_moderation_node_history';
-  $handler->display->display_options['fields']['state']['field'] = 'state';
-  $handler->display->display_options['fields']['state']['relationship'] = 'nid';
-  $handler->display->display_options['fields']['state']['label'] = 'Status';
-  $handler->display->display_options['fields']['state']['machine_name'] = 0;
-  /* Field: Field collection item: Requested by */
-  $handler->display->display_options['fields']['field_request_requested_by']['id'] = 'field_request_requested_by';
-  $handler->display->display_options['fields']['field_request_requested_by']['table'] = 'field_data_field_request_requested_by';
-  $handler->display->display_options['fields']['field_request_requested_by']['field'] = 'field_request_requested_by';
-  $handler->display->display_options['fields']['field_request_requested_by']['settings'] = array(
-    'link' => 0,
-  );
   /* Field: Content: Requested to */
   $handler->display->display_options['fields']['field_recipient']['id'] = 'field_recipient';
   $handler->display->display_options['fields']['field_recipient']['table'] = 'field_data_field_recipient';
@@ -598,13 +577,36 @@ function crf_core_views_default_views() {
   $handler->display->display_options['fields']['field_recipient']['settings'] = array(
     'link' => 0,
   );
+  /* Field: Field collection item: Requested by */
+  $handler->display->display_options['fields']['field_request_requested_by']['id'] = 'field_request_requested_by';
+  $handler->display->display_options['fields']['field_request_requested_by']['table'] = 'field_data_field_request_requested_by';
+  $handler->display->display_options['fields']['field_request_requested_by']['field'] = 'field_request_requested_by';
+  $handler->display->display_options['fields']['field_request_requested_by']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_request_requested_by']['settings'] = array(
+    'link' => 0,
+  );
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['relationship'] = 'uid';
   $handler->display->display_options['fields']['name']['label'] = 'Provided By';
+  $handler->display->display_options['fields']['name']['exclude'] = TRUE;
   $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
+  /* Field: Workbench Moderation: State */
+  $handler->display->display_options['fields']['state']['id'] = 'state';
+  $handler->display->display_options['fields']['state']['table'] = 'workbench_moderation_node_history';
+  $handler->display->display_options['fields']['state']['field'] = 'state';
+  $handler->display->display_options['fields']['state']['relationship'] = 'nid';
+  $handler->display->display_options['fields']['state']['label'] = 'Status';
+  $handler->display->display_options['fields']['state']['machine_name'] = 0;
+  /* Field: Content revision: Updated date */
+  $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
+  $handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
+  $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
+  $handler->display->display_options['fields']['timestamp']['relationship'] = 'reverse_field_collection_request_ref_node';
+  $handler->display->display_options['fields']['timestamp']['label'] = 'Time of last action';
+  $handler->display->display_options['fields']['timestamp']['date_format'] = 'long';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -740,18 +742,16 @@ function crf_core_views_default_views() {
     t('Title'),
     t('Edit link'),
     t('(edit)'),
-    t('Time of last action'),
-    t('Status'),
-    t('Requested by'),
     t('Sent to'),
+    t('Requested by'),
     t('Provided By'),
+    t('Status'),
+    t('Time of last action'),
     t('Reporting type'),
     t('Reporting types (field_reporting_type)'),
     t('State'),
     t('Page'),
   );
-
-
   $export['requests'] = $view;
 
   return $export;
