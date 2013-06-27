@@ -593,6 +593,7 @@ function crf_core_views_default_views() {
   $handler->display->display_options['fields']['field_recipient']['table'] = 'field_data_field_recipient';
   $handler->display->display_options['fields']['field_recipient']['field'] = 'field_recipient';
   $handler->display->display_options['fields']['field_recipient']['relationship'] = 'reverse_field_collection_request_ref_node';
+  $handler->display->display_options['fields']['field_recipient']['label'] = 'Sent to';
   $handler->display->display_options['fields']['field_recipient']['settings'] = array(
     'link' => 0,
   );
@@ -741,7 +742,7 @@ function crf_core_views_default_views() {
     t('Updated on'),
     t('State'),
     t('Requested by'),
-    t('Requested to'),
+    t('Sent to'),
     t('Provided By'),
     t('Reporting type'),
     t('Reporting types (field_reporting_type)'),
