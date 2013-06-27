@@ -712,6 +712,13 @@ function crf_core_views_default_views() {
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['path'] = 'crf';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'CRF';
+  $handler->display->display_options['menu']['description'] = 'Common Request Format';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'main-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $translatables['requests'] = array(
     t('Master'),
     t('Requests'),
