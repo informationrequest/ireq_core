@@ -573,7 +573,7 @@ function crf_core_views_default_views() {
   $handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
   $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
   $handler->display->display_options['fields']['timestamp']['relationship'] = 'reverse_field_collection_request_ref_node';
-  $handler->display->display_options['fields']['timestamp']['label'] = 'Updated on';
+  $handler->display->display_options['fields']['timestamp']['label'] = 'Time of last action';
   $handler->display->display_options['fields']['timestamp']['date_format'] = 'long';
   /* Field: Workbench Moderation: State */
   $handler->display->display_options['fields']['state']['id'] = 'state';
@@ -740,7 +740,7 @@ function crf_core_views_default_views() {
     t('Title'),
     t('Edit link'),
     t('(edit)'),
-    t('Updated on'),
+    t('Time of last action'),
     t('Status'),
     t('Requested by'),
     t('Sent to'),
