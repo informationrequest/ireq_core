@@ -3,6 +3,7 @@ description = Common Request Format core module
 core = 7.x
 package = CRF
 php = 5.2.4
+project = crf_core
 dependencies[] = better_exposed_filters
 dependencies[] = context
 dependencies[] = ctools
@@ -25,6 +26,7 @@ features[variable][] = locale_custom_strings_en
 features[views_view][] = field_collection_requests_view
 features[views_view][] = requests
 features[workbench_moderation_states][] = draft
+features[workbench_moderation_states][] = finalized
 features[workbench_moderation_states][] = needs_review
 features[workbench_moderation_states][] = published
 features[workbench_moderation_transitions][] = draft:needs_review
@@ -34,10 +36,3 @@ features[workbench_moderation_transitions][] = needs_review:published
 files[] = views/crf_core.views.inc
 files[] = views/crf_core_handler_field_crf_link.inc
 files[] = views/crf_core_handler_filter_internal_request.inc
-
-
-; Information added by drush on 2013-06-16
-version = ""
-project = "crf_core"
-datestamp = "1371398703"
-

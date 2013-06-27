@@ -15,16 +15,22 @@ function crf_core_workbench_moderation_export_states() {
       'description' => 'Require cluster input',
       'weight' => -10,
     ),
+    'finalized' => array(
+      'name' => 'finalized',
+      'label' => 'Finalized',
+      'description' => 'Make this version finalized',
+      'weight' => -8,
+    ),
     'needs_review' => array(
       'name' => 'needs_review',
-      'label' => 'Submitted to OCHA',
+      'label' => 'Needs Review',
       'description' => 'Submit to OCHA',
-      'weight' => -8,
+      'weight' => -9,
     ),
     'published' => array(
       'name' => 'published',
       'label' => 'Published',
-      'description' => 'Make this version live',
+      'description' => 'Make this version public',
       'weight' => -7,
     ),
   );
