@@ -580,6 +580,7 @@ function crf_core_views_default_views() {
   $handler->display->display_options['fields']['state']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['fields']['state']['field'] = 'state';
   $handler->display->display_options['fields']['state']['relationship'] = 'nid';
+  $handler->display->display_options['fields']['state']['label'] = 'Status';
   $handler->display->display_options['fields']['state']['machine_name'] = 0;
   /* Field: Field collection item: Requested by */
   $handler->display->display_options['fields']['field_request_requested_by']['id'] = 'field_request_requested_by';
@@ -740,12 +741,13 @@ function crf_core_views_default_views() {
     t('Edit link'),
     t('(edit)'),
     t('Updated on'),
-    t('State'),
+    t('Status'),
     t('Requested by'),
     t('Sent to'),
     t('Provided By'),
     t('Reporting type'),
     t('Reporting types (field_reporting_type)'),
+    t('State'),
     t('Page'),
   );
 
