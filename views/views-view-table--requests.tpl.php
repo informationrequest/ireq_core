@@ -18,6 +18,7 @@
  *   field id, then row number. This matches the index in $rows.
  * @ingroup views_templates
  */
+
 /*
 if (isset($result[0])) {
   dpm($view);
@@ -28,13 +29,14 @@ if (isset($result[0])) {
 */
 
 // @TODO move to preprocess
-$row = array_pop(array_keys($rows));
-$field_emergencies = $view->render_field('field_emergencies', $row);
-$field_request_audience = $view->render_field('field_request_audience', $row);
-$field_request_deadline = $view->render_field('field_request_deadline', $row);
+$row_index = array_pop(array_keys($rows));
+$field_emergencies = $view->render_field('field_emergencies', $row_index);
+$field_request_audience = $view->render_field('field_request_audience', $row_index);
+$field_request_deadline = $view->render_field('field_request_deadline', $row_index);
 
 //dpm($result[$row], "row: $row");
-
+$request_list = array();
+$requested_by_list = array();
 ?>
 <h2 property="dc:title" datatype="" class="node-title"><?php print $title; ?></h2>
 <div class="field field-name-field-request-audience field-type-list-boolean field-label-inline clearfix">
@@ -60,6 +62,15 @@ $field_request_deadline = $view->render_field('field_request_deadline', $row);
   </thead>
   <tbody>
     <?php foreach ($rows as $row_count => $row): ?>
+<?php
+//dpm($row, "ROW: $row_count");
+//dpm($result[$row_count], "RESULT: $row_count");
+// stack requested by users along report title
+$requested_by_id = $result[$row_count]->field_field_request_requested_by[0]['raw']['target_id'];
+$request_list[$requested_by_id]['stack'][] = $row['title'];
+$request_list[$requested_by_id]['user'] = $result[$row_count]->field_field_request_requested_by[0];
+
+?>
       <tr <?php if ($row_classes[$row_count]) { print 'class="' . implode(' ', $row_classes[$row_count]) .'"';  } ?>>
         <?php foreach ($row as $field => $content): ?>
           <td <?php if ($field_classes[$field][$row_count]) { print 'class="'. $field_classes[$field][$row_count] . '" '; } ?><?php print drupal_attributes($field_attributes[$field][$row_count]); ?>>
@@ -70,8 +81,18 @@ $field_request_deadline = $view->render_field('field_request_deadline', $row);
     <?php endforeach; ?>
   </tbody>
 </table>
+<?php
+  $referral_list = array();
+  foreach ($request_list as $uid => $requests) {
+    $referral_list[] =  implode($requests['stack'], ',&nbsp;') . "&nbsp;" . t('requested by') . "&nbsp;" . $requests['user']['rendered']['#markup'];
+  }
+  $referrals = implode($referral_list, '<br/>');
+?>
+<div class="field field-referrals clearfix">
+  <div class="field-items"><div class="field-item"><?php print $referrals;?></div></div>
+</div>
 <div class="field field-name-field-request-deadline field-type-datetime field-label-inline clearfix">
-  <div class="field-label"><?php print t('Deadline');?>:&nbsp;</div><div class="field-items">
-  <div class="field-item even"><?php print $field_request_deadline; ?></div></div>
+  <div class="field-label"><?php print t('Deadline');?>:&nbsp;</div>
+  <div class="field-items"><div class="field-item"><?php print $field_request_deadline; ?></div></div>
 </div>
 
