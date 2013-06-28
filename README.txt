@@ -8,13 +8,36 @@ function crf_core_get_request
 
 === Form alter hooks
 crf_core_form_alter
-  Remove audience filter for users without permission
+  Remove audience filter for users without permission "access_internal_ocha_requests".
 
 == Moderation
-Multiple workflows for different content types
+* needs_input (draft)
+* needs_review
+* finalized (published)
+* public
+
+Multiple workflows for different content types.
 https://drupal.org/node/1206854
 $conf['workbench_moderation_per_node_type'] = TRUE;
 
+=== Context
+crf
+  Define CRF base context; triggered by other context (to avoid override on pluggin new content type).
+
+=== Menu
+/crf => CRF
+  Main menu item fro CRF feature.
+
+=== Permission
+access_internal_ocha_requests
+  Access internal request.
+
+=== Views
+requests
+  CRF home page view, with exposed block for filtering,
+
+field_collection_requests_view
+  Report list view attached to requests.
 
 @TODO
 * Implement hook_uninstall() https://drupal.org/node/1055460
@@ -28,20 +51,6 @@ $conf['workbench_moderation_per_node_type'] = TRUE;
 * Field collection add feeds integration - https://drupal.org/node/1063434
 
 @TODO remove from here
-=== Block hooks
-
-crf_core_block_info
-crf_core_block_view
-
-  Block qith add request link
-
-
-crf_core_form_request_node_form_alter
-crf_core_field_collection_request_preview_validate
-crf_core_field_collection_request_preview_submit
-crf_core_field_collection_request_cancel_preview_submit
-
-  Preview for the requests (field_collection_request)
 
 === Theme hooks
 crf_core_theme
@@ -49,40 +58,6 @@ theme_field_collection_request_preview
 
   Theme request (field_collection_request) preview
 
-
-== Content Types
-
-Report
-Request
-
-
-== Field bases/instances
-
-field_collection_item-field_collection_request-field_append_to_alert_email
-field_collection_item-field_collection_request-field_reporting_type
-field_collection_item-field_collection_request-field_request_recipients
-field_collection_item-field_collection_request-field_request_requested_by
-
-node-report-field_collection_request_ref
-node-report-field_file
-node-report-field_recipient
-node-report-field_report_description
-
-node-request-field_append_to_alert_email
-node-request-field_collection_request
-node-request-field_request_deadline
-node-request-field_internal_report
-
-taxonomy_term-reporting_types-field_content_type
-
-
-== Rules (crf_core.rules_defaults.inc)
-
-rules_content_published - Workflow content type published
-rules_email_recipients_on_request_submission - Email recipients on request submission
-rules_workflow_content_type_submitted_to_ocha - Workflow content type submitted to OCHA
-
-  @TODO check if still needed
 
 
 == Taxonomy (crf_core.features.taxonomy.inc)
