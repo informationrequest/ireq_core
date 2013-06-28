@@ -379,12 +379,12 @@ function crf_core_views_default_views() {
     'field_request_deadline' => 'field_request_deadline',
     'item_id' => 'item_id',
     'title' => 'title',
-    'edit_node' => 'title',
-    'timestamp' => 'timestamp',
-    'state' => 'state',
-    'field_request_requested_by' => 'field_request_requested_by',
+    'edit_node' => 'edit_node',
     'field_recipient' => 'field_recipient',
+    'field_request_requested_by' => 'field_request_requested_by',
     'name' => 'name',
+    'state' => 'state',
+    'timestamp' => 'timestamp',
   );
   $handler->display->display_options['style_options']['default'] = 'title';
   $handler->display->display_options['style_options']['info'] = array(
@@ -433,14 +433,7 @@ function crf_core_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'timestamp' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'state' => array(
+    'field_recipient' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -454,15 +447,22 @@ function crf_core_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_recipient' => array(
+    'name' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'state' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
-    'name' => array(
-      'sortable' => 0,
+    'timestamp' => array(
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
@@ -563,12 +563,6 @@ function crf_core_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'node_revision';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['relationship'] = 'reverse_field_collection_request_ref_node';
-  /* Field: Content: Edit link */
-  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
-  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['relationship'] = 'reverse_field_collection_request_ref_node';
-  $handler->display->display_options['fields']['edit_node']['text'] = '(edit)';
   /* Field: Content: Requested to */
   $handler->display->display_options['fields']['field_recipient']['id'] = 'field_recipient';
   $handler->display->display_options['fields']['field_recipient']['table'] = 'field_data_field_recipient';
@@ -608,6 +602,13 @@ function crf_core_views_default_views() {
   $handler->display->display_options['fields']['timestamp']['relationship'] = 'reverse_field_collection_request_ref_node';
   $handler->display->display_options['fields']['timestamp']['label'] = 'Time of last action';
   $handler->display->display_options['fields']['timestamp']['date_format'] = 'long';
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['relationship'] = 'reverse_field_collection_request_ref_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Action';
+  $handler->display->display_options['fields']['edit_node']['text'] = 'update';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -708,6 +709,12 @@ function crf_core_views_default_views() {
     139443077 => 0,
     2023496 => 0,
   );
+  /* Filter criterion: Workbench Moderation: Current */
+  $handler->display->display_options['filters']['current']['id'] = 'current';
+  $handler->display->display_options['filters']['current']['table'] = 'workbench_moderation_node_history';
+  $handler->display->display_options['filters']['current']['field'] = 'current';
+  $handler->display->display_options['filters']['current']['relationship'] = 'reverse_field_collection_request_ref_node';
+  $handler->display->display_options['filters']['current']['value'] = '1';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
@@ -748,13 +755,13 @@ function crf_core_views_default_views() {
     t('.'),
     t(','),
     t('Title'),
-    t('Edit link'),
-    t('(edit)'),
     t('Sent to'),
     t('Requested by'),
     t('Provided By'),
     t('Status'),
     t('Time of last action'),
+    t('Action'),
+    t('update'),
     t('Reporting type'),
     t('Reporting types (field_reporting_type)'),
     t('State'),
