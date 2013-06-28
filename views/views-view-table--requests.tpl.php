@@ -71,7 +71,7 @@ $field_request_deadline = $view->render_field('field_request_deadline', $row);
   </tbody>
 </table>
 <div class="field field-name-field-request-deadline field-type-datetime field-label-inline clearfix">
-  <div class="field-label"><?php print t('Deadline for information submission');?>:&nbsp;</div><div class="field-items">
+  <div class="field-label"><?php print t('Deadline');?>:&nbsp;</div><div class="field-items">
   <div class="field-item even"><?php print $field_request_deadline; ?></div></div>
 </div>
 
