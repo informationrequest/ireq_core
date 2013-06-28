@@ -6,21 +6,6 @@
 
 include_once 'crf_core.features.inc';
 
-/**
- * Implementation of hook_views_query_alter().
- */
-function crf_core_views_query_alter(&$view, &$query) {
-  if ($view->name == 'requests') {
-    if (count($view->style_options['grouping'])) {
-      $field = $view->style_options['grouping'][0]['field'];
-      $field_alias = $view->field[$field]->field_alias;
-    }
-    if ($query->orderby[0]['field'] <> 'field_collection_request_field_collection_item__node_revisio') {
-      array_unshift($query->orderby, array('field' => 'field_collection_request_field_collection_item__node_revisio', 'direction' => 'ASC'));
-    }
-  }
-}
-
 /*
  * Implements hook_form_alter().
  * - remove filter option for user without audience access

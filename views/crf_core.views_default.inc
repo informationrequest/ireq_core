@@ -386,7 +386,7 @@ function crf_core_views_default_views() {
     'field_recipient' => 'field_recipient',
     'name' => 'name',
   );
-  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['default'] = 'title';
   $handler->display->display_options['style_options']['info'] = array(
     'title_1' => array(
       'sortable' => 0,
@@ -469,6 +469,7 @@ function crf_core_views_default_views() {
       'empty_column' => 0,
     ),
   );
+  $handler->display->display_options['style_options']['override'] = FALSE;
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
