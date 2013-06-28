@@ -38,3 +38,4 @@ features[workbench_moderation_transitions][] = needs_review:published
 files[] = views/crf_core.views.inc
 files[] = views/crf_core_handler_field_crf_link.inc
 files[] = views/crf_core_handler_filter_internal_request.inc
+stylesheets[all][] = crf_core.css

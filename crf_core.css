@@ -1,0 +1,31 @@
+/**
+ * View Request
+ * .view-requests
+ */
+#zone-content .view-requests thead th {
+  background-color: #666666;
+  color: #FFFFFF;
+}
+
+.front #zone-content .view-requests thead th a,
+#zone-content .view-requests thead th a {
+  color: #FFFFFF;
+}
+
+/**
+ * Filter block
+ * #block-views-exp-requests-page-1
+ */
+
+#block-views-exp-requests-page-1 .views-exposed-form .views-exposed-widget {
+  clear: both;
+  margin-bottom: 1em;
+}
+
+#block-views-exp-requests-page-1 .views-exposed-form .views-exposed-widget .views-widget {
+  padding-left: 1em;
+}
+
+#block-views-exp-requests-page-1 .views-exposed-form .views-exposed-widget .form-submit {
+  margin-top: 0;
+}
