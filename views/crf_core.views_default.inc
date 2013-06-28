@@ -563,6 +563,7 @@ function crf_core_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'node_revision';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['relationship'] = 'reverse_field_collection_request_ref_node';
+  $handler->display->display_options['fields']['title']['link_to_node'] = TRUE;
   /* Field: Content: Requested to */
   $handler->display->display_options['fields']['field_recipient']['id'] = 'field_recipient';
   $handler->display->display_options['fields']['field_recipient']['table'] = 'field_data_field_recipient';
