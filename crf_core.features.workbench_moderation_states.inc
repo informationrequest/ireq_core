@@ -18,7 +18,7 @@ function crf_core_workbench_moderation_export_states() {
     'needs_review' => array(
       'name' => 'needs_review',
       'label' => 'Needs Review',
-      'description' => 'Submit to OCHA',
+      'description' => 'Submit',
       'weight' => -9,
     ),
     'published' => array(
