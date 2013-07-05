@@ -15,12 +15,6 @@ function crf_core_workbench_moderation_export_states() {
       'description' => 'Require cluster input',
       'weight' => -10,
     ),
-    'finalized' => array(
-      'name' => 'finalized',
-      'label' => 'Finalized',
-      'description' => 'Make this version finalized',
-      'weight' => -8,
-    ),
     'needs_review' => array(
       'name' => 'needs_review',
       'label' => 'Needs Review',
@@ -29,7 +23,13 @@ function crf_core_workbench_moderation_export_states() {
     ),
     'published' => array(
       'name' => 'published',
-      'label' => 'Published',
+      'label' => 'Finalized',
+      'description' => 'Make this version finalized',
+      'weight' => -8,
+    ),
+    'public' => array(
+      'name' => 'public',
+      'label' => 'Public',
       'description' => 'Make this version public',
       'weight' => -7,
     ),
