@@ -30,25 +30,54 @@ if (isset($result[0])) {
 
 // @TODO move to preprocess
 $row_index = array_pop(array_keys($rows));
+
+// Render emergencies field
 $field_emergencies = $view->render_field('field_emergencies', $row_index);
+
+// Render audience field
 $field_request_audience = $view->render_field('field_request_audience', $row_index);
+
+// Render deadline field
 $field_request_deadline = $view->render_field('field_request_deadline', $row_index);
 
-//dpm($result[$row], "row: $row");
+// Render referral list
 $request_list = array();
 $requested_by_list = array();
+$referral_list = array();
+foreach ($rows as $row_count => $row) {
+//dpm($row, "ROW: $row_count");
+//dpm($result[$row_count], "RESULT: $row_count");
+  // stack requested by users along report title
+  $requested_by_id = $result[$row_count]->field_field_request_requested_by[0]['raw']['target_id'];
+  $request_list[$requested_by_id]['stack'][] = $result[$row_count]->field_collection_request_ref_field_collection_item__node_rev;
+  $request_list[$requested_by_id]['user'] = $result[$row_count]->field_field_request_requested_by[0]['rendered']['#markup'];
+}
+foreach ($request_list as $uid => $requests) {
+  $referral_list[] =  $requests['user'] . "&nbsp;(" . implode($requests['stack'], ' ') . ")";
+}
+$field_request_referrals = implode($referral_list, '<br/>');
+
+
 ?>
 <h2 property="dc:title" datatype="" class="node-title"><?php print $title; ?></h2>
-<div class="field field-name-field-request-audience field-type-list-boolean field-label-inline clearfix">
-  <div class="field-label"><?php print t('Audience');?>:&nbsp;</div>
-  <div class="field-items"><div class="field-item"><?php print $field_request_audience; ?></div></div>
-</div>
 <?php if ($field_emergencies): ?>
 <div class="field field-name-field-emergencies field-type-taxonomy-term-reference field-label-inline clearfix">
   <div class="field-label"><?php print t('Emergencies');?>:&nbsp;</div>
   <div class="field-items"><div class="field-item"><?php print $field_emergencies; ?></div></div>
 </div>
 <?php endif; ?>
+<div class="field field-name-field-request-audience field-type-list field-label-inline clearfix">
+  <div class="field-label"><?php print t('Audience');?>:&nbsp;</div>
+  <div class="field-items"><div class="field-item"><?php print $field_request_audience; ?></div></div>
+</div>
+<div class="field field-name-field-request-deadline field-type-datetime field-label-inline clearfix">
+  <div class="field-label"><?php print t('Deadline');?>:&nbsp;</div>
+  <div class="field-items"><div class="field-item"><?php print $field_request_deadline; ?></div></div>
+</div>
+<div class="field field-name-field-referrals field-type-list field-label-inline clearfix">
+  <div class="field-label"><?php print t('Requested by');?>:&nbsp;</div>
+  <div class="field-items"><div class="field-item"><?php print $field_request_referrals;?></div></div>
+</div>
 <table <?php if ($classes) { print 'class="'. $classes . '" '; } ?><?php print $attributes; ?>>
   <caption></caption>
   <thead>
@@ -62,15 +91,6 @@ $requested_by_list = array();
   </thead>
   <tbody>
     <?php foreach ($rows as $row_count => $row): ?>
-<?php
-//dpm($row, "ROW: $row_count");
-//dpm($result[$row_count], "RESULT: $row_count");
-// stack requested by users along report title
-$requested_by_id = $result[$row_count]->field_field_request_requested_by[0]['raw']['target_id'];
-$request_list[$requested_by_id]['stack'][] = $row['title'];
-$request_list[$requested_by_id]['user'] = $result[$row_count]->field_field_request_requested_by[0];
-
-?>
       <tr <?php if ($row_classes[$row_count]) { print 'class="' . implode(' ', $row_classes[$row_count]) .'"';  } ?>>
         <?php foreach ($row as $field => $content): ?>
           <td <?php if ($field_classes[$field][$row_count]) { print 'class="'. $field_classes[$field][$row_count] . '" '; } ?><?php print drupal_attributes($field_attributes[$field][$row_count]); ?>>
@@ -81,18 +101,3 @@ $request_list[$requested_by_id]['user'] = $result[$row_count]->field_field_reque
     <?php endforeach; ?>
   </tbody>
 </table>
-<?php
-  $referral_list = array();
-  foreach ($request_list as $uid => $requests) {
-    $referral_list[] =  implode($requests['stack'], ',&nbsp;') . "&nbsp;" . t('requested by') . "&nbsp;" . $requests['user']['rendered']['#markup'];
-  }
-  $referrals = implode($referral_list, '<br/>');
-?>
-<div class="field field-referrals clearfix">
-  <div class="field-items"><div class="field-item"><?php print $referrals;?></div></div>
-</div>
-<div class="field field-name-field-request-deadline field-type-datetime field-label-inline clearfix">
-  <div class="field-label"><?php print t('Deadline');?>:&nbsp;</div>
-  <div class="field-items"><div class="field-item"><?php print $field_request_deadline; ?></div></div>
-</div>
-
