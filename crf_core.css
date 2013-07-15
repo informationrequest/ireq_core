@@ -1,4 +1,46 @@
 /**
+ * Request Button
+ * CSS from Google Mail
+ */
+.block-crf-request-create-request h2 {
+  display: none;
+  height: 0;
+}
+.block-crf-request-create-request .create-request {
+/* .z0 .T-I */
+  min-width: 97px;
+/*  .T-I-KE */
+  background-color: #d14836;
+  background-image: -webkit-linear-gradient(top,#dd4b39,#d14836);
+  background-image: linear-gradient(top,#dd4b39,#d14836);
+  color: #fff;
+  border: 1px solid transparent;
+/* .T-I-KE */
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  text-shadow: 0 1px rgba(0,0,0,0.1);
+  text-transform: uppercase;
+/* .T-I */
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  cursor: default;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  margin-right: 16px;
+  height: 27px;
+  line-height: 27px;
+  min-width: 54px;
+  outline: 0;
+  padding: 0 8px;
+/* .J-J5-Ji */
+  position: relative;
+  display: inline-block;
+}
+
+
+/**
  * View Request
  * .view-requests
  */
@@ -10,6 +52,18 @@
 .front #zone-content .view-requests thead th a,
 #zone-content .view-requests thead th a {
   color: #FFFFFF;
+}
+
+#zone-content .view-requests h2 {
+  padding: 0;
+}
+
+#zone-content .view-requests .field-label-inline .field-label {
+  min-width: 90px;
+}
+
+#zone-content .view-requests .field-items {
+  padding-bottom: 10px;
 }
 
 /**
