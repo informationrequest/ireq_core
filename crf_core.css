@@ -1,12 +1,33 @@
 /**
+ * rowcsa FIX
+ */
+.page-crf.front #block-system-main {
+  display: block;
+}
+.page-crf.front #region-content .block {
+  height: auto;
+}
+.page-crf.front #region-content .block .view-content {
+  height: auto;
+}
+
+/* Add !important to avoid overrides from '.front #zone-content a' rowca.css */
+.front #zone-content .block-crf-request-create-request a,
+.front #zone-content .block-crf-request-create-request a:link,
+.front #zone-content .block-crf-request-create-request a:visited {
+  color: #fff !important;
+}
+
+/**
  * Request Button
  * CSS from Google Mail
  */
-.block-crf-request-create-request h2 {
+#zone-content #region-sidebar-first .block-crf-request-create-request h2 {
   display: none;
   height: 0;
 }
-.block-crf-request-create-request .create-request {
+
+#zone-content #region-sidebar-first .block-crf-request-create-request a.create-request {
 /* .z0 .T-I */
   min-width: 97px;
 /*  .T-I-KE */
