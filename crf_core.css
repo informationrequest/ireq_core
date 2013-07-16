@@ -21,6 +21,7 @@
 /**
  * Request Button
  * CSS from Google Mail
+ * Color: #B91222 -> #C61525
  */
 #zone-content #region-sidebar-first .block-crf-request-create-request h2 {
   display: none;
@@ -31,9 +32,9 @@
 /* .z0 .T-I */
   min-width: 97px;
 /*  .T-I-KE */
-  background-color: #d14836;
-  background-image: -webkit-linear-gradient(top,#dd4b39,#d14836);
-  background-image: linear-gradient(top,#dd4b39,#d14836);
+  background-color: #B91222;
+  background-image: -webkit-linear-gradient(top,#C61525,#B91222);
+  background-image: linear-gradient(top,#C61525,#B91222);
   color: #fff;
   border: 1px solid transparent;
 /* .T-I-KE */
