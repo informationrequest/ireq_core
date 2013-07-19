@@ -601,7 +601,7 @@ function crf_core_views_default_views() {
   $handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
   $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
   $handler->display->display_options['fields']['timestamp']['relationship'] = 'reverse_field_collection_request_ref_node';
-  $handler->display->display_options['fields']['timestamp']['label'] = 'Time of last action';
+  $handler->display->display_options['fields']['timestamp']['label'] = 'Last edit';
   $handler->display->display_options['fields']['timestamp']['date_format'] = 'long';
   /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
@@ -760,7 +760,7 @@ function crf_core_views_default_views() {
     t('Requested by'),
     t('Provided By'),
     t('Status'),
-    t('Time of last action'),
+    t('Last edit'),
     t('Action'),
     t('update'),
     t('Reporting type'),
