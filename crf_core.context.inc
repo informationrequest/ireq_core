@@ -54,6 +54,7 @@ function crf_core_context_default_contexts() {
       ),
     ),
     'menu' => 'crf',
+    'breadcrumb' => 'crf',
   );
   $context->condition_mode = 0;
 
