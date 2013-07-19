@@ -68,7 +68,7 @@ $field_request_referrals = implode($referral_list, '<br/>');
   </div>
   <?php endif; ?>
   <div class="field field-name-field-request-audience field-type-list field-label-inline clearfix">
-    <div class="field-label"><?php print t('Audience');?>:&nbsp;</div>
+    <div class="field-label"><?php print t('Type of request');?>:&nbsp;</div>
     <div class="field-items"><div class="field-item"><?php print $field_request_audience; ?></div></div>
   </div>
   <div class="field field-name-field-request-deadline field-type-datetime field-label-inline clearfix">
