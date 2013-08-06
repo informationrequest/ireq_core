@@ -9,12 +9,18 @@ include_once 'crf_core.features.inc';
 /*
  * Implements hook_form_alter().
  * - remove filter option for user without audience access
+ * - remove audience form element for user without audience access
  */
 function crf_core_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'views_exposed_form' && $form_state['view']->name == 'requests') {
     if (!user_access('access_internal_ocha_requests')) {
       unset($form['field_request_audience_value']);
       unset($form['#info']['filter-field_request_audience_value']);
+    }
+  }
+  if (isset($form['field_request_audience'])) {
+    if (!user_access('access_internal_ocha_requests')) {
+      unset($form['field_request_audience']);
     }
   }
 }
