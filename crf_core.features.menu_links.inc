@@ -18,7 +18,7 @@ function crf_core_menu_default_menu_links() {
     'link_title' => 'CRF',
     'options' => array(
       'attributes' => array(
-        'title' => 'Common Request Format',
+        'title' => 'Information Request',
       ),
     ),
     'module' => 'system',
