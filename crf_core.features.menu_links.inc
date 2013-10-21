@@ -15,7 +15,7 @@ function crf_core_menu_default_menu_links() {
     'menu_name' => 'main-menu',
     'link_path' => 'crf',
     'router_path' => 'crf',
-    'link_title' => 'CRF',
+    'link_title' => 'Information Request',
     'options' => array(
       'attributes' => array(
         'title' => 'Information Request',
@@ -30,7 +30,7 @@ function crf_core_menu_default_menu_links() {
   );
   // Translatables
   // Included for use with string extractors like potx.
-  t('CRF');
+  t('Information Request');
 
 
   return $menu_links;
