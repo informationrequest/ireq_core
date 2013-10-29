@@ -6,7 +6,7 @@
 
 include_once 'crf_core.features.inc';
 
-/*
+/**
  * Implements hook_form_alter().
  * - remove filter option for user without audience access
  * - remove audience form element for user without audience access
@@ -25,7 +25,7 @@ function crf_core_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
-/*
+/**
  * Implements hook_permission().
  */
 function crf_core_permission() {
