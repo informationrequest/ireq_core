@@ -1,0 +1,107 @@
+/**
+ * rowcsa FIX
+ */
+.page-crf.front #block-system-main {
+  display: block;
+}
+.page-crf.front #region-content .block {
+  height: auto;
+}
+.page-crf.front #region-content .block .view-content {
+  height: auto;
+}
+
+/* Add !important to avoid overrides from '.front #zone-content a' rowca.css */
+.front #zone-content .block-crf-request-create-request a,
+.front #zone-content .block-crf-request-create-request a:link,
+.front #zone-content .block-crf-request-create-request a:visited {
+  color: #fff !important;
+}
+
+/**
+ * Request Button
+ * CSS from Google Mail
+ * Color: #B91222 -> #C61525
+ */
+#zone-content #region-sidebar-first .block-crf-request-create-request h2 {
+  display: none;
+  height: 0;
+}
+
+#zone-content #region-sidebar-first .block-crf-request-create-request a.create-request {
+/* .z0 .T-I */
+  min-width: 97px;
+/*  .T-I-KE */
+  background-color: #B91222;
+  background-image: -webkit-linear-gradient(top,#C61525,#B91222);
+  background-image: linear-gradient(top,#C61525,#B91222);
+  color: #fff;
+  border: 1px solid transparent;
+/* .T-I-KE */
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  text-shadow: 0 1px rgba(0,0,0,0.1);
+  text-transform: uppercase;
+/* .T-I */
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  cursor: default;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  margin-right: 16px;
+  height: 27px;
+  line-height: 27px;
+  min-width: 54px;
+  outline: 0;
+  padding: 0 8px;
+/* .J-J5-Ji */
+  position: relative;
+  display: inline-block;
+}
+
+
+/**
+ * View Request
+ * .view-requests
+ */
+#zone-content .view-requests thead th {
+  background-color: #666666;
+  color: #FFFFFF;
+}
+
+.front #zone-content .view-requests thead th a,
+#zone-content .view-requests thead th a {
+  color: #FFFFFF;
+}
+
+#zone-content .view-requests h2 {
+  padding: 0;
+}
+
+#zone-content .view-requests .field-label-inline .field-label {
+  min-width: 100px;
+}
+
+#zone-content .view-requests .field-items {
+  padding-bottom: 10px;
+}
+
+/**
+ * Filter block
+ * #block-views-exp-requests-page-1
+ */
+
+#block-views-exp-requests-page-1 .views-exposed-form .views-exposed-widget {
+  clear: both;
+  margin-bottom: 1em;
+}
+
+#block-views-exp-requests-page-1 .views-exposed-form .views-exposed-widget .views-widget {
+  padding-left: 1em;
+}
+
+#block-views-exp-requests-page-1 .views-exposed-form .views-exposed-widget .form-submit {
+  margin-top: 0;
+}

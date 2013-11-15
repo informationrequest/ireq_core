@@ -1,0 +1,166 @@
+<?php
+/**
+ * @file
+ * Code for the CRF core feature.
+ */
+
+include_once 'crf_core.features.inc';
+
+/**
+ * Implements hook_form_alter().
+ * - remove filter option for user without audience access
+ * - remove audience form element for user without audience access
+ */
+function crf_core_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'views_exposed_form' && $form_state['view']->name == 'requests') {
+    if (!user_access('access_internal_ocha_requests')) {
+      unset($form['field_request_audience_value']);
+      unset($form['#info']['filter-field_request_audience_value']);
+    }
+  }
+  if (isset($form['field_request_audience'])) {
+    if (!user_access('access_internal_ocha_requests')) {
+      unset($form['field_request_audience']);
+    }
+  }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function crf_core_permission() {
+  return array(
+    'access_internal_ocha_requests' => array(
+      'title' => t('Access Internal Requests'),
+      'description' => t('Allow users to access CFR internal (OCHA) requests'),
+     ),
+  );
+}
+
+/**
+ * Implements hook_list_option_info().
+ */
+function crf_core_list_option_info() {
+  $info['crf_reports'] = array(
+    'label' => t('CRF Report Types'),
+    'callback' => 'crf_core_list_options_reports',
+  );
+
+  return $info;
+}
+
+/**
+ * Callback function for hook_list_option_info_alter
+ * Return as array of options the list of CFR Report Types.
+ * i.e. a list of node types using the field_collection_request_ref
+ */
+function crf_core_list_options_reports() {
+  return crf_core_report_types(TRUE);
+}
+
+/**
+ * Get a list of entity (node) bundles using field_collection_request_ref
+ * i.e. node types used as "CFR Report Type"
+ */
+function crf_core_report_types($reset = FALSE) {
+  $report_types = &drupal_static(__FUNCTION__);
+  if (!isset($report_types) || $reset) {
+    if (($cache = cache_get('list:CFR:report_types')) && !$reset) {
+      $report_types = $cache->data;
+    }
+    else {
+      $field_crf = field_info_field('field_collection_request_ref');
+      if (isset($field_crf['bundles']['node']) && count($field_crf['bundles']['node'])) {
+        foreach ($field_crf['bundles']['node'] as $node_type) {
+          $node_type_info = node_type_get_type($node_type);
+          $report_types[$node_type_info->type] = $node_type_info->name;
+        }
+      }
+      cache_set('list:CFR:report_types', $report_types, 'cache');
+    }
+  }
+  return $report_types;
+}
+
+/**
+ * Get report from uid, request
+ *
+ * @param $content_type
+ * @param $entity_id
+ * @param $recipient_uid
+ *
+ * @return $node
+ */
+function crf_core_get_request($entity_id, $recipient_uid) {
+  // build query
+  $query = new EntityFieldQuery();
+  $result = $query
+    ->entityCondition('entity_type', 'node')
+    ->fieldCondition('field_collection_request_ref', 'target_id', $entity_id)
+    ->fieldCondition('field_recipient', 'target_id', $recipient_uid)
+    ->execute();
+  // get nid (if any)
+  $nid =  empty($result) ? NULL : reset(array_keys($result['node']));
+//dpm($result, "crf_core_get_request > result ($nid)");
+    return $nid;
+}
+
+/**
+ * Preprocess node
+ *
+function crf_core_preprocess_node(&$variables) {
+  $node = $variables['node'];
+//dpm($variables, 'crf_core_preprocess_node > variables');
+//dsm("crf_core_preprocess_node");
+  $callback = 'crf_core_preprocess_node_' . $node->type;
+  switch ($node->type) {
+    case 'request':
+    case 'assessments_batch':
+    case 'contacts_upload':
+    case 'fts_message':
+    case 'indicator_data_batch':
+      module_load_include('inc', 'crf_core', 'crf_core.preprocess');
+      return $callback($node, $variables);
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function crf_core_theme() {
+  return array(
+    'request_icon' => array(
+      'variables' => array('node' => NULL),
+      'function' => 'theme_request_icon',
+    ),
+  );
+}
+
+/**
+ * Theme icon for request
+ */
+function theme_request_icon($variables) {
+  $node = $variables['node'];
+
+  $icon_vars = array(
+    'path' => path_to_theme() . '/images/crf_request/internal-request.png',
+    'alt' => 'Internal Request',
+    'title' => 'Internal Request',
+    'width' => '128',
+    'height' => '41',
+    'attributes' => array('class' => 'request-icon'),
+  );
+
+  // Check request type ("internal", "external", so far)
+  // TODO refactoring after swithcing to taxonomy
+  if ($node->field_request_type['und'][0]['value']) {
+  }
+  else {
+    $icon_vars['path'] = path_to_theme() . '/images/crf_request/external-request.png';
+  }
+
+  $output = theme('image', $icon_vars);
+  return $output;
+}
+
+
