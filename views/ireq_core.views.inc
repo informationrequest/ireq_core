@@ -6,15 +6,15 @@
  */
 
 
-function crf_core_views_data_alter(&$data) {
+function ireq_core_views_data_alter(&$data) {
 
-  $data['field_data_field_request_audience']['crf_internal'] = array(
-    'group' => t('CRF'),
-    'title' => t('CRF internal request'),
-    'help' => t('Filter for CRF internal request'),
+  $data['field_data_field_request_audience']['ireq_internal'] = array(
+    'group' => t('IREQ'),
+    'title' => t('IREQ internal request'),
+    'help' => t('Filter for IREQ internal request'),
     'real field' => 'field_request_audience',
     'filter' => array(
-      'handler' => 'crf_core_handler_filter_internal_request',
+      'handler' => 'ireq_core_handler_filter_internal_request',
     ),
   );
 }
@@ -22,14 +22,14 @@ function crf_core_views_data_alter(&$data) {
 /**
  * Implements hook_views_data()
  */
-function crf_core_views_data() {
+function ireq_core_views_data() {
 
   // hostEntityId
-  $data['field_collection_item']['crf_link'] = array(
-    'title' => t('CRF link'),
-    'help' => t('The CRF link from the ID of the Host Entity. Zonkers says 2'),
+  $data['field_collection_item']['ireq_link'] = array(
+    'title' => t('IREQ link'),
+    'help' => t('The IREQ link from the ID of the Host Entity. Zonkers says 2'),
     'field' => array(
-      'handler' => 'crf_core_handler_field_crf_link',
+      'handler' => 'ireq_core_handler_field_ireq_link',
     ),
   );
 /*

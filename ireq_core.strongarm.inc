@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * crf_core.strongarm.inc
+ * ireq_core.strongarm.inc
  */
 
 /**
  * Implements hook_strongarm().
  */
-function crf_core_strongarm() {
+function ireq_core_strongarm() {
   $export = array();
 
   $strongarm = new stdClass();

@@ -1,20 +1,20 @@
 <?php
 /**
  * @file
- * crf_core.features.menu_links.inc
+ * ireq_core.features.menu_links.inc
  */
 
 /**
  * Implements hook_menu_default_menu_links().
  */
-function crf_core_menu_default_menu_links() {
+function ireq_core_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu:crf
-  $menu_links['main-menu:crf'] = array(
+  // Exported menu link: main-menu:ireq
+  $menu_links['main-menu:ireq'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'crf',
-    'router_path' => 'crf',
+    'link_path' => 'ireq',
+    'router_path' => 'ireq',
     'link_title' => 'Information Request',
     'options' => array(
       'attributes' => array(

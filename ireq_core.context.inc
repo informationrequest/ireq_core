@@ -1,25 +1,25 @@
 <?php
 /**
  * @file
- * crf_core.context.inc
+ * ireq_core.context.inc
  */
 
 /**
  * Implements hook_context_default_contexts().
  */
-function crf_core_context_default_contexts() {
+function ireq_core_context_default_contexts() {
   $export = array();
 
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
-  $context->name = 'crf';
-  $context->description = 'CRF sidewide context';
-  $context->tag = 'CRF';
+  $context->name = 'ireq';
+  $context->description = 'IREQ sidewide context';
+  $context->tag = 'IREQ';
   $context->conditions = array(
     'context' => array(
       'values' => array(
-        'crf_type_*' => 'crf_type_*',
+        'ireq_type_*' => 'ireq_type_*',
       ),
     ),
     'node' => array(
@@ -32,15 +32,15 @@ function crf_core_context_default_contexts() {
     ),
     'path' => array(
       'values' => array(
-        'crf*' => 'crf*',
+        'ireq*' => 'ireq*',
       ),
     ),
   );
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'crf_request-create_request' => array(
-          'module' => 'crf_request',
+        'ireq_request-create_request' => array(
+          'module' => 'ireq_request',
           'delta' => 'create_request',
           'region' => 'sidebar_first',
           'weight' => '-10',
@@ -53,16 +53,16 @@ function crf_core_context_default_contexts() {
         ),
       ),
     ),
-    'menu' => 'crf',
-    'breadcrumb' => 'crf',
+    'menu' => 'ireq',
+    'breadcrumb' => 'ireq',
   );
   $context->condition_mode = 0;
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('CRF');
-  t('CRF sidewide context');
-  $export['crf'] = $context;
+  t('IREQ');
+  t('IREQ sidewide context');
+  $export['ireq'] = $context;
 
   return $export;
 }

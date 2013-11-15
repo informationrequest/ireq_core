@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Preprocess functions for the CRF feature
+ * Preprocess functions for the IREQ feature
  */
 
 /**
  * Preprocess "request" content type
  */
-function crf_core_preprocess_node_request($node, &$variables) {
+function ireq_core_preprocess_node_request($node, &$variables) {
 
   // init request_table
   $headers = array(t('Recipient'), t('Request Type'), t('Status'));
@@ -70,7 +70,7 @@ function crf_core_preprocess_node_request($node, &$variables) {
   $request_table = theme('table', array(
     'header' => $headers,
     'rows' => $rows,
-    'attributes' => array('class' => 'crf-request-table'),
+    'attributes' => array('class' => 'ireq-request-table'),
     'caption' => '',
     'colgroups' => array(),
     'sticky' => array(),
@@ -80,7 +80,7 @@ function crf_core_preprocess_node_request($node, &$variables) {
   $icon_vars = array();
   if ($node->field_request_type['und'][0]['value']) {
     $icon_vars = array(
-      'path' => path_to_theme() . '/images/crf_request/internal-request.png',
+      'path' => path_to_theme() . '/images/ireq_request/internal-request.png',
       'alt' => 'Internal Request',
       'title' => 'Internal Request',
       'width' => '128',
@@ -90,7 +90,7 @@ function crf_core_preprocess_node_request($node, &$variables) {
   }
   else {
     $icon_vars = array(
-      'path' => path_to_theme() . '/images/crf_request/external-request.png',
+      'path' => path_to_theme() . '/images/ireq_request/external-request.png',
       'alt' => 'External Request',
       'title' => 'External Request',
       'width' => '128',
@@ -110,14 +110,14 @@ function crf_core_preprocess_node_request($node, &$variables) {
 /**
  * Preprocess assesmant_batch node type
  */
-function crf_core_preprocess_node_assessments_batch($node, &$variables) {
+function ireq_core_preprocess_node_assessments_batch($node, &$variables) {
   $variables['assessments_batch_table'] = views_embed_view('assessments_batch', 'table', $node->uuid);
 }
 
 /**
  * Preprocess contacts_upload node type
  */
-function crf_core_preprocess_node_contacts_upload($node, &$variables) {
+function ireq_core_preprocess_node_contacts_upload($node, &$variables) {
   $cluster_tid = isset($node->field_cluster['und'][0]['tid']) ? $node->field_cluster['und'][0]['tid'] : NULL;
   if ($cluster_tid) {
     $variables['contacts_table'] = views_embed_view('contacts', 'page_2', $cluster_tid);
@@ -127,9 +127,9 @@ function crf_core_preprocess_node_contacts_upload($node, &$variables) {
 /**
  * Preprocess fts_message node type
  */
-function crf_core_preprocess_node_fts_message($node, &$variables) {
-  $crf_request = $node->field_crf_request['und'][0]['entity'];
-  $emergencies_term = taxonomy_term_load($crf_request->field_emergencies['und'][0]['tid']);
+function ireq_core_preprocess_node_fts_message($node, &$variables) {
+  $ireq_request = $node->field_ireq_request['und'][0]['entity'];
+  $emergencies_term = taxonomy_term_load($ireq_request->field_emergencies['und'][0]['tid']);
 
   $cluster_term = $node->field_cluster['und'][0]['taxonomy_term'];
   if (!empty($cluster_term->field_information_focal_points)) {
@@ -143,15 +143,15 @@ function crf_core_preprocess_node_fts_message($node, &$variables) {
   }
 
   $variables['cluster_contact'] = $cluster_contact_first_name . ' ' . $cluster_contact_last_name;
-  $variables['date'] = isset($crf_request->field_fts_date['und'][0]['value']) ? $crf_request->field_fts_date['und'][0]['value'] : $crf_request->field_crf_req_date['und'][0]['value'];
+  $variables['date'] = isset($ireq_request->field_fts_date['und'][0]['value']) ? $ireq_request->field_fts_date['und'][0]['value'] : $ireq_request->field_ireq_req_date['und'][0]['value'];
   $variables['emergency'] = $emergencies_term->name;
-  $variables['url'] = !empty($crf_request->field_fts_url['und']) ? $crf_request->field_fts_url['und'][0]['url'] : '';
+  $variables['url'] = !empty($ireq_request->field_fts_url['und']) ? $ireq_request->field_fts_url['und'][0]['url'] : '';
 }
 
 /**
  * Preprocess indicator_data_batch node type
  */
-function crf_core_preprocess_node_indicator_data_batch($node, &$variables) {
+function ireq_core_preprocess_node_indicator_data_batch($node, &$variables) {
   if (isset($node->view)) {
     $variables['indicator_data_batch_table'] = views_embed_view('indicator_data_batch', 'teaser', $node->uuid);
     $variables['indicator_data_batch_graphs'] = views_embed_view('indicator_data_batch', 'teaser_graphs', $node->uuid);

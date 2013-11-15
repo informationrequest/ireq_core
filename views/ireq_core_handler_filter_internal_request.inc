@@ -1,8 +1,8 @@
 <?php
 /**
- * Custom filter handler for views, that handles CRF internal requests
+ * Custom filter handler for views, that handles IREQ internal requests
  */
-class crf_core_handler_filter_internal_request extends views_handler_filter {
+class ireq_core_handler_filter_internal_request extends views_handler_filter {
 
   function admin_summary() { }
   function operator_form() { }

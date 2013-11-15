@@ -1,19 +1,19 @@
 <?php
 /**
  * @file
- * crf_core.views_default.inc
+ * ireq_core.views_default.inc
  */
 
 /**
  * Implements hook_views_default_views().
  */
-function crf_core_views_default_views() {
+function ireq_core_views_default_views() {
   $export = array();
 
   $view = new view();
   $view->name = 'field_collection_requests_view';
   $view->description = 'Render field_collection request with reports from entity uid';
-  $view->tag = 'CRF';
+  $view->tag = 'IREQ';
   $view->base_table = 'field_collection_item';
   $view->human_name = 'Field collection Requests view';
   $view->core = 7;
@@ -42,7 +42,7 @@ function crf_core_views_default_views() {
     'edit_node' => 'title',
     'field_recipient' => 'field_recipient',
     'field_request_requested_by' => 'field_request_requested_by',
-    'crf_link' => 'crf_link',
+    'ireq_link' => 'ireq_link',
     'uid' => 'uid',
     'state' => 'state',
     'stamp' => 'stamp',
@@ -94,7 +94,7 @@ function crf_core_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'crf_link' => array(
+    'ireq_link' => array(
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -175,12 +175,12 @@ function crf_core_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['relationship'] = 'reverse_field_collection_request_ref_node';
   $handler->display->display_options['fields']['edit_node']['text'] = '(add/edit)';
-  /* Field: Field collection item: CRF link */
-  $handler->display->display_options['fields']['crf_link']['id'] = 'crf_link';
-  $handler->display->display_options['fields']['crf_link']['table'] = 'field_collection_item';
-  $handler->display->display_options['fields']['crf_link']['field'] = 'crf_link';
-  $handler->display->display_options['fields']['crf_link']['label'] = 'Status';
-  $handler->display->display_options['fields']['crf_link']['exclude'] = TRUE;
+  /* Field: Field collection item: IREQ link */
+  $handler->display->display_options['fields']['ireq_link']['id'] = 'ireq_link';
+  $handler->display->display_options['fields']['ireq_link']['table'] = 'field_collection_item';
+  $handler->display->display_options['fields']['ireq_link']['field'] = 'ireq_link';
+  $handler->display->display_options['fields']['ireq_link']['label'] = 'Status';
+  $handler->display->display_options['fields']['ireq_link']['exclude'] = TRUE;
   /* Field: Workbench Moderation: State */
   $handler->display->display_options['fields']['state']['id'] = 'state';
   $handler->display->display_options['fields']['state']['table'] = 'workbench_moderation_node_history';
@@ -275,7 +275,7 @@ function crf_core_views_default_views() {
   $view = new view();
   $view->name = 'requests';
   $view->description = 'List of reports grouped by request';
-  $view->tag = 'CRF';
+  $view->tag = 'IREQ';
   $view->base_table = 'field_collection_item';
   $view->human_name = 'Request List';
   $view->core = 7;
@@ -685,11 +685,11 @@ function crf_core_views_default_views() {
     139443077 => 0,
     2023496 => 0,
   );
-  /* Filter criterion: CRF: CRF internal request */
-  $handler->display->display_options['filters']['crf_internal']['id'] = 'crf_internal';
-  $handler->display->display_options['filters']['crf_internal']['table'] = 'field_data_field_request_audience';
-  $handler->display->display_options['filters']['crf_internal']['field'] = 'crf_internal';
-  $handler->display->display_options['filters']['crf_internal']['relationship'] = 'field_collection_request_node';
+  /* Filter criterion: IREQ: IREQ internal request */
+  $handler->display->display_options['filters']['ireq_internal']['id'] = 'ireq_internal';
+  $handler->display->display_options['filters']['ireq_internal']['table'] = 'field_data_field_request_audience';
+  $handler->display->display_options['filters']['ireq_internal']['field'] = 'ireq_internal';
+  $handler->display->display_options['filters']['ireq_internal']['relationship'] = 'field_collection_request_node';
   /* Filter criterion: Content: Request Audience (field_request_audience) */
   $handler->display->display_options['filters']['field_request_audience_value']['id'] = 'field_request_audience_value';
   $handler->display->display_options['filters']['field_request_audience_value']['table'] = 'field_data_field_request_audience';
@@ -720,7 +720,7 @@ function crf_core_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->display->display_options['exposed_block'] = TRUE;
-  $handler->display->display_options['path'] = 'crf';
+  $handler->display->display_options['path'] = 'ireq';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Information Request';
   $handler->display->display_options['menu']['description'] = 'Information Request';

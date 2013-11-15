@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * Contains the CRF report link based on host_entity_path field handler.
+ * Contains the IREQ report link based on host_entity_path field handler.
  */
 
 /**
  * Field handler to display the Report link
  */
-class crf_core_handler_field_crf_link extends views_handler_field {
+class ireq_core_handler_field_ireq_link extends views_handler_field {
   function query() {
     // Do nothing, as this handler does not need to do anything to the query itself.
   }
@@ -50,7 +50,7 @@ class crf_core_handler_field_crf_link extends views_handler_field {
 //dsm("Content type: $content_type - Request entity: $request_id - User: $recipient_uid");
 
     // get request node (if any)
-    $request_nid = crf_core_get_request($request_id, $recipient_uid);
+    $request_nid = ireq_core_get_request($request_id, $recipient_uid);
 
     if ($request_nid) {
       $report_link_text = t('Edit @rt', array('@rt' => $content_type));
