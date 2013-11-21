@@ -1,6 +1,6 @@
 ireq_core
 --------
-Common Request Format core module
+Information Request System
 
 == Module (ireq_core.module)
 function ireq_core_get_request
